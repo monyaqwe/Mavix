@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Code, Palette, ShoppingCart, Search, Smartphone, Wrench, Check, Sparkles } from 'lucide-react';
 import Navbar from '../components/Navbar';
@@ -129,6 +130,11 @@ const servicesData = {
 const ServiceDetail = () => {
     const { slug } = useParams();
     const service = servicesData[slug];
+
+    // Scroll to top when slug changes
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [slug]);
 
     if (!service) {
         return (

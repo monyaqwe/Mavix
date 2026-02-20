@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
     LogOut, Settings, Bell, Home, FolderOpen, BarChart3,
-    HelpCircle, Menu, X, Sparkles
+    HelpCircle, Menu, X, Sparkles, ShieldCheck
 } from 'lucide-react';
 import mavxLogo from '../assets/mavx-logo.svg';
 
@@ -37,6 +37,11 @@ const DashboardLayout = () => {
                 { icon: Home, text: 'Overview', path: '/dashboard' },
                 { icon: FolderOpen, text: 'Projects', path: '/dashboard/projects' },
                 { icon: BarChart3, text: 'Analytics', path: '/dashboard/analytics' },
+            ]
+        },
+        {
+            label: 'Administration', items: [
+                { icon: ShieldCheck, text: 'Admin Cabinet', path: '/dashboard/admin' },
             ]
         },
         {

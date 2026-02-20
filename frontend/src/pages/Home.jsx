@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Code, Palette, ShoppingCart, Search, Smartphone, Wrench, Check, Sparkles, MessageSquare, Rocket, Zap } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const Home = () => {
-    const sectionsRef = useRef([]);
+    const observerRefs = useRef([]);
+    const location = useLocation();
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -19,7 +20,7 @@ const Home = () => {
             { threshold: 0.12 }
         );
 
-        sectionsRef.current.forEach((el) => {
+        observerRefs.current.forEach((el) => {
             if (el) observer.observe(el);
         });
 
@@ -27,10 +28,23 @@ const Home = () => {
     }, []);
 
     const addRef = (el) => {
-        if (el && !sectionsRef.current.includes(el)) {
-            sectionsRef.current.push(el);
+        if (el && !observerRefs.current.includes(el)) {
+            observerRefs.current.push(el);
         }
     };
+
+    // Scroll to hash on mount or when location changes
+    useEffect(() => {
+        if (location.hash) {
+            const id = location.hash.replace('#', '');
+            setTimeout(() => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100); // Small delay to ensure refs are ready
+        }
+    }, [location]);
 
     return (
         <div className="landing">
@@ -128,25 +142,59 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* ===== STATS ===== */}
+            {/* ===== PORTFOLIO / OUR PROJECTS ===== */}
             <section id="portfolio" className="section section--animate section--dark" ref={addRef}>
                 <div className="section__inner">
-                    <div className="stats-grid">
-                        <div className="stat-card">
-                            <span className="stat-card__number">150+</span>
-                            <span className="stat-card__label">Projects Delivered</span>
-                        </div>
-                        <div className="stat-card">
-                            <span className="stat-card__number">98%</span>
-                            <span className="stat-card__label">Client Satisfaction</span>
-                        </div>
-                        <div className="stat-card">
-                            <span className="stat-card__number">50+</span>
-                            <span className="stat-card__label">Happy Clients</span>
-                        </div>
-                        <div className="stat-card">
-                            <span className="stat-card__number">24/7</span>
-                            <span className="stat-card__label">Dedicated Support</span>
+                    <div className="section__header">
+                        <span className="section__badge">Portfolio</span>
+                        <h2 className="section__title">Our Recent <span className="text-gradient">Masterpieces</span></h2>
+                        <p className="section__subtitle">A selection of high-impact websites we've built for industry leaders.</p>
+                    </div>
+
+                    <div className="services-grid">
+                        {[
+                            { title: 'Fintech Pro', category: 'Web App', desc: 'Secure financial dashboard with real-time analytics.' },
+                            { title: 'HealthTrack', category: 'Mobile App', desc: 'Patient management system for modern clinics.' },
+                            { title: 'EduLearn', category: 'E-Learning', desc: 'Interactive platform for global education.' },
+                        ].map((project, i) => (
+                            <div key={i} className="service-card">
+                                <div className="service-card__icon"><Rocket size={24} /></div>
+                                <h3>{project.title}</h3>
+                                <p style={{ color: 'var(--accent-primary)', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.5rem' }}>{project.category}</p>
+                                <p>{project.desc}</p>
+                                <Link to="/register" className="service-card__link" style={{ marginTop: '1rem', display: 'inline-block' }}>View Details <ArrowRight size={14} /></Link>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ===== ABOUT US ===== */}
+            <section id="about" className="section section--animate" ref={addRef}>
+                <div className="section__inner">
+                    <div className="section__header">
+                        <span className="section__badge">About Us</span>
+                        <h2 className="section__title">Driven by <span className="text-gradient">Innovation</span></h2>
+                        <p className="section__subtitle">We are a team of passionate developers and designers dedicated to building the future of the web.</p>
+                    </div>
+
+                    <div className="cta-block" style={{ background: 'rgba(12, 18, 37, 0.5)', textAlign: 'left', padding: '3rem' }}>
+                        <div className="grid-overlay"></div>
+                        <div style={{ position: 'relative', zIndex: 2 }}>
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>Our Mission</h3>
+                            <p style={{ marginBottom: '1.5rem' }}>
+                                At **The Mavx**, our mission is to empower businesses with cutting-edge digital solutions. We believe that a great website is more than just code; it's an experience that connects brands with people.
+                            </p>
+                            <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', textAlign: 'left', gap: '1rem' }}>
+                                <div>
+                                    <h4 style={{ color: 'var(--accent-primary)', marginBottom: '0.25rem' }}>Expertise</h4>
+                                    <p style={{ fontSize: '0.85rem' }}>5+ years of delivering high-end React & Node application.</p>
+                                </div>
+                                <div>
+                                    <h4 style={{ color: 'var(--accent-primary)', marginBottom: '0.25rem' }}>Quality</h4>
+                                    <p style={{ fontSize: '0.85rem' }}>Strict adherence to industry standards and best practices.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

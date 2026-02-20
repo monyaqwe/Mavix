@@ -38,6 +38,7 @@ const Navbar = () => {
                     <div className={`navbar__links ${mobileOpen ? 'navbar__links--open' : ''}`}>
                         <button onClick={() => scrollToSection('services')} className="navbar__link">Services</button>
                         <button onClick={() => scrollToSection('portfolio')} className="navbar__link">Portfolio</button>
+                        <button onClick={() => scrollToSection('about')} className="navbar__link">About</button>
                         <button onClick={() => scrollToSection('process')} className="navbar__link">How It Works</button>
                         <button onClick={() => scrollToSection('pricing')} className="navbar__link">Pricing</button>
                     </div>

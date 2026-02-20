@@ -42,6 +42,8 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  /* Offset for sticky navbar */
 }
 
 body {
@@ -1399,6 +1401,49 @@ button {
   transition: all 0.2s;
 }
 
+.footer__link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s;
+}
+
+.footer__link-btn:hover {
+  color: var(--accent-primary);
+}
+
+.footer__link,
+.footer__bottom-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s;
+}
+
+.footer__link:hover,
+.footer__bottom-link:hover {
+  color: var(--accent-primary);
+}
+
+.legal-content h2 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin: 2rem 0 1rem;
+}
+
+.legal-content p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+
 .back-link-center:hover {
   color: var(--text-primary);
 }
@@ -1910,7 +1955,6 @@ button {
 /* Content */
 .dash__content {
   padding: 2rem 1.75rem;
-  max-width: 1200px;
   width: 100%;
   animation: fadeInUp 0.4s ease-out;
 }

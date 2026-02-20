@@ -13,6 +13,9 @@ import DashboardAnalytics from './pages/DashboardAnalytics';
 import DashboardSettings from './pages/DashboardSettings';
 import DashboardHelp from './pages/DashboardHelp';
 import ServiceDetail from './pages/ServiceDetail';
+import AdminDashboard from './pages/AdminDashboard';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 import TestConnection from './components/TestConnection';
 
 function App() {
@@ -34,6 +37,10 @@ function App() {
         {/* Service detail pages */}
         <Route path="/services/:slug" element={<ServiceDetail />} />
 
+        {/* Legal pages */}
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+
         {/* Dashboard with nested sub-pages */}
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardOverview />} />
@@ -41,6 +48,7 @@ function App() {
           <Route path="analytics" element={<DashboardAnalytics />} />
           <Route path="settings" element={<DashboardSettings />} />
           <Route path="help" element={<DashboardHelp />} />
+          <Route path="admin" element={<AdminDashboard />} />
         </Route>
 
       </Routes>
