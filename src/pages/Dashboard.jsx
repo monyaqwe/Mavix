@@ -13,7 +13,7 @@ const Dashboard = () => {
         <div className="dashboard-container">
             <nav className="dashboard-nav">
                 <div className="nav-logo">
-                    <h2>SecureWait</h2>
+                    <h2>The Mavx</h2>
                 </div>
                 <div className="nav-actions">
                     <button className="icon-btn"><Bell size={20} /></button>

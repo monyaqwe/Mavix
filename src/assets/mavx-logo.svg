@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="mavxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4f8bff"/>
+      <stop offset="50%" style="stop-color:#7c5cfc"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+    <linearGradient id="mavxGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4"/>
+      <stop offset="100%" style="stop-color:#4f8bff"/>
+    </linearGradient>
+  </defs>
+  <!-- M shape left stroke -->
+  <path d="M30 170 L30 50 L70 110 L100 60" stroke="url(#mavxGrad2)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- M shape right stroke -->
+  <path d="M100 60 L130 110 L170 50 L170 170" stroke="url(#mavxGrad)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- X overlay -->
+  <path d="M65 130 L135 130" stroke="url(#mavxGrad)" stroke-width="10" stroke-linecap="round" opacity="0.5"/>
+</svg>

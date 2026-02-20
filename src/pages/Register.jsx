@@ -27,7 +27,7 @@ const Register = () => {
         return errors;
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
 
@@ -47,41 +47,19 @@ const Register = () => {
         setGeneralError("");
         setLoading(true);
 
-        try {
-            const response = await fetch("http://localhost:8080/auth/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, email, password })
-            });
+        // OPTIMISTIC NAVIGATION: Navigate immediately
+        navigate('/verify-email', { state: { email } });
 
-            const text = await response.text();
-            console.log("Server response:", text);
-
-            if (response.ok) {
-                navigate('/verify-email', { state: { email } });
-            } else {
-                let errorMessage = "Registration failed. Please try again.";
-                try {
-                    const data = JSON.parse(text);
-                    errorMessage = data.message || data.error || errorMessage;
-                } catch (e) {
-                    if (text && text.trim().length > 0) errorMessage = text;
-                }
-
-                if (errorMessage === "Internal Server Error" || errorMessage.includes("Email already exists")) {
-                    setFieldErrors({ email: "Email already exists" });
-                } else {
-                    setGeneralError(errorMessage);
-                }
-                console.error("Registration failed:", text);
-            }
-
-        } catch (err) {
-            console.error("Error:", err);
-            setGeneralError("Connection error. Please try again later.");
-        } finally {
-            setLoading(false);
-        }
+        // Fire request in background
+        fetch("http://localhost:8080/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, email, password })
+        }).catch(err => {
+            console.error("Background registration failed:", err);
+            // Since we already navigated, we can't easily show the error here.
+            // This is the trade-off for "instant" navigation.
+        });
     };
 
     return (

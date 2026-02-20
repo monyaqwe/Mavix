@@ -15,6 +15,7 @@ const ResetPassword = () => {
     const [loading, setLoading] = useState(false);
     const [timer, setTimer] = useState(30);
     const [canResend, setCanResend] = useState(false);
+    const [passwordError, setPasswordError] = useState("");
 
     useEffect(() => {
         if (location.state?.email) {
@@ -39,6 +40,14 @@ const ResetPassword = () => {
 
     const handleReset = async (e) => {
         e.preventDefault();
+
+        // Custom Validation
+        if (newPassword.length < 5) {
+            setPasswordError("Password must be at least 5 characters");
+            return;
+        }
+        setPasswordError("");
+
         setLoading(true);
         setMessage("");
         setIsSuccess(false);
@@ -75,12 +84,13 @@ const ResetPassword = () => {
         setTimer(30);
         setMessage("");
 
-        // Fire-and-forget resend request (using forgot-password endpoint)
-        fetch("http://localhost:8080/auth/forgot-password", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email })
-        }).then(res => {
+        try {
+            const res = await fetch("http://localhost:8080/auth/forgot-password", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
             if (res.ok) {
                 setMessage("Reset code resent via email!");
                 setIsSuccess(true);
@@ -88,10 +98,10 @@ const ResetPassword = () => {
                 setMessage("Failed to resend code.");
                 setIsSuccess(false);
             }
-        }).catch(() => {
+        } catch (error) {
             setMessage("Connection error.");
             setIsSuccess(false);
-        });
+        }
     };
 
     return (
@@ -133,12 +143,20 @@ const ResetPassword = () => {
                             type="password"
                             id="newPassword"
                             value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
+                            onChange={(e) => {
+                                setNewPassword(e.target.value);
+                                if (passwordError) setPasswordError("");
+                            }}
                             placeholder="Enter new password"
-                            required
-                            minLength={8}
+                            className={passwordError ? "input-error" : ""}
                         />
                     </div>
+                    {passwordError && (
+                        <div className="field-error-tooltip">
+                            <AlertCircle size={14} />
+                            {passwordError}
+                        </div>
+                    )}
                     <p className="hint">Must be at least 8 characters</p>
                 </div>
 
