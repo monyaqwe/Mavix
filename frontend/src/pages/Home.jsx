@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Code, Palette, ShoppingCart, Search, Smartphone, Wrench, Check, Sparkles, MessageSquare, Rocket, Zap } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -88,36 +88,42 @@ const Home = () => {
                     </div>
 
                     <div className="services-grid">
-                        <div className="service-card">
+                        <Link to="/services/web-development" className="service-card">
                             <div className="service-card__icon"><Code size={24} /></div>
                             <h3>Web Development</h3>
                             <p>Custom websites built with modern technologies — React, Next.js, and more. Fast, scalable, and SEO-optimized.</p>
-                        </div>
-                        <div className="service-card">
+                            <span className="service-card__link">Learn more <ArrowRight size={14} /></span>
+                        </Link>
+                        <Link to="/services/ui-ux-design" className="service-card">
                             <div className="service-card__icon"><Palette size={24} /></div>
-                            <h3>UI/UX Design</h3>
+                            <h3>Custom Design</h3>
                             <p>Beautiful, intuitive interfaces that delight users and boost engagement. Every pixel crafted with purpose.</p>
-                        </div>
-                        <div className="service-card">
+                            <span className="service-card__link">Learn more <ArrowRight size={14} /></span>
+                        </Link>
+                        <Link to="/services/e-commerce" className="service-card">
                             <div className="service-card__icon"><ShoppingCart size={24} /></div>
                             <h3>E-Commerce</h3>
                             <p>Powerful online stores with seamless checkout, inventory management, and payment integrations.</p>
-                        </div>
-                        <div className="service-card">
+                            <span className="service-card__link">Learn more <ArrowRight size={14} /></span>
+                        </Link>
+                        <Link to="/services/seo-optimization" className="service-card">
                             <div className="service-card__icon"><Search size={24} /></div>
                             <h3>SEO Optimization</h3>
                             <p>Data-driven strategies that put your website at the top of search results and drive organic traffic.</p>
-                        </div>
-                        <div className="service-card">
+                            <span className="service-card__link">Learn more <ArrowRight size={14} /></span>
+                        </Link>
+                        <Link to="/services/mobile-first-design" className="service-card">
                             <div className="service-card__icon"><Smartphone size={24} /></div>
                             <h3>Mobile-First Design</h3>
                             <p>Responsive experiences that look stunning on every device — phones, tablets, and desktops alike.</p>
-                        </div>
-                        <div className="service-card">
+                            <span className="service-card__link">Learn more <ArrowRight size={14} /></span>
+                        </Link>
+                        <Link to="/services/maintenance-support" className="service-card">
                             <div className="service-card__icon"><Wrench size={24} /></div>
                             <h3>Maintenance & Support</h3>
                             <p>Ongoing updates, security patches, and performance monitoring to keep your site running flawlessly.</p>
-                        </div>
+                            <span className="service-card__link">Learn more <ArrowRight size={14} /></span>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -196,7 +202,7 @@ const Home = () => {
                     <div className="pricing-grid">
                         <div className="pricing-card">
                             <h3 className="pricing-card__name">Starter</h3>
-                            <div className="pricing-card__price">$999</div>
+                            <div className="pricing-card__price">$100</div>
                             <p className="pricing-card__desc">Perfect for small businesses and landing pages</p>
                             <ul className="pricing-card__features">
                                 <li><Check size={16} /> Single page website</li>
@@ -211,7 +217,7 @@ const Home = () => {
                         <div className="pricing-card pricing-card--featured">
                             <div className="pricing-card__badge">Most Popular</div>
                             <h3 className="pricing-card__name">Professional</h3>
-                            <div className="pricing-card__price">$2,499</div>
+                            <div className="pricing-card__price">$599</div>
                             <p className="pricing-card__desc">Ideal for growing businesses and multi-page sites</p>
                             <ul className="pricing-card__features">
                                 <li><Check size={16} /> Up to 10 pages</li>
@@ -264,9 +270,6 @@ const Home = () => {
             </section>
 
             <Footer />
-
-            {/* Auth modal overlay — renders when navigating to /register, /login, etc. */}
-            <Outlet />
         </div>
     );
 };
