@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Lock, Key, ArrowRight, AlertCircle, CheckCircle } from 'lucide-react';
 
+import { AUTH_ENDPOINTS } from '../api/config';
+
 const ResetPassword = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -53,7 +55,7 @@ const ResetPassword = () => {
         setIsSuccess(false);
 
         try {
-            const response = await fetch("http://localhost:8080/auth/reset-password", {
+            const response = await fetch(AUTH_ENDPOINTS.RESET_PASSWORD, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, code, newPassword }),
@@ -85,7 +87,7 @@ const ResetPassword = () => {
         setMessage("");
 
         try {
-            const res = await fetch("http://localhost:8080/auth/forgot-password", {
+            const res = await fetch(AUTH_ENDPOINTS.FORGOT_PASSWORD, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email })

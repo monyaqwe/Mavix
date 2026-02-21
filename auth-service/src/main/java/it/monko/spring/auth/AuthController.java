@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -74,5 +76,14 @@ public class AuthController {
             return ResponseEntity.ok("Email verified successfully");
         }
         return ResponseEntity.status(400).body("Invalid or expired code");
+    }
+
+    @PostMapping("/resend-verification")
+    public ResponseEntity<String> resendVerification(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        String code = verificationCodeService.generateCode();
+        verificationCodeService.saveCode(email, code);
+        emailService.sendVerificationCode(email, code);
+        return ResponseEntity.ok("Verification code resent");
     }
 }

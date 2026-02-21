@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Mail, Key, ArrowRight, AlertCircle, CheckCircle } from 'lucide-react';
 
+import { AUTH_ENDPOINTS } from '../api/config';
+
 const EmailVerification = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,7 +42,7 @@ const EmailVerification = () => {
     setIsSuccess(false);
 
     try {
-      const response = await fetch("http://localhost:8080/auth/verify", {
+      const response = await fetch(AUTH_ENDPOINTS.VERIFY, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, code }),
@@ -61,7 +63,6 @@ const EmailVerification = () => {
       setIsSuccess(false);
     }
     setLoading(false);
-    setLoading(false);
   };
 
   const handleResend = async () => {
@@ -72,7 +73,7 @@ const EmailVerification = () => {
     setMessage("");
 
     // Fire-and-forget resend request
-    fetch("http://localhost:8080/auth/resend-verification", { // Assuming this endpoint exists, or reuse register logic if needed suitable for your backend
+    fetch(AUTH_ENDPOINTS.RESEND_VERIFICATION, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email })

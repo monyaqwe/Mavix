@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Mail, Lock, User, AlertCircle } from 'lucide-react';
 
+import { AUTH_ENDPOINTS } from '../api/config';
+
 const Register = () => {
     const navigate = useNavigate();
     const [fieldErrors, setFieldErrors] = useState({});
@@ -51,7 +53,7 @@ const Register = () => {
         navigate('/verify-email', { state: { email } });
 
         // Fire request in background
-        fetch("http://localhost:8080/auth/register", {
+        fetch(AUTH_ENDPOINTS.REGISTER, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, email, password })

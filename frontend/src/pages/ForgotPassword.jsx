@@ -1,6 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Mail, ArrowLeft } from 'lucide-react';
 
+import { AUTH_ENDPOINTS } from '../api/config';
+
 const ForgotPassword = () => {
     const navigate = useNavigate();
 
@@ -12,7 +14,7 @@ const ForgotPassword = () => {
         navigate('/reset-password', { state: { email } });
 
         // Fire-and-forget request to backend
-        fetch("http://localhost:8080/auth/forgot-password", {
+        fetch(AUTH_ENDPOINTS.FORGOT_PASSWORD, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email })
