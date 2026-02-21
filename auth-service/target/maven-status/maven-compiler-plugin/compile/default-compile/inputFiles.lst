@@ -1,0 +1,17 @@
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/AuthServiceApplication.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/auth/AuthController.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/auth/AuthService.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/auth/AuthUser.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/auth/AuthUserRepository.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/auth/dto/ForgotPasswordRequest.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/auth/dto/LoginRequest.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/auth/dto/RegisterRequest.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/auth/dto/ResetPasswordRequest.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/auth/dto/VerifyRequest.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/email/EmailService.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/email/VerificationCode.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/email/VerificationCodeRepository.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/email/VerificationCodeService.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/kafka/AuthEventProducer.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/security/JwtUtils.java
+/Users/andrejkamanin/Documents/Mavix/backend/auth-service/src/main/java/it/monko/spring/security/SecurityConfig.java

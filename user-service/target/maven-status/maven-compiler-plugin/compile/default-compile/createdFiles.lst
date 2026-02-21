@@ -1,0 +1,13 @@
+it/monko/spring/project/ProjectRepository.class
+it/monko/spring/project/dto/ProjectRequest.class
+it/monko/spring/user/UserRepository.class
+it/monko/spring/user/User.class
+it/monko/spring/project/ProjectController.class
+it/monko/spring/project/Project.class
+it/monko/spring/UserServiceApplication.class
+it/monko/spring/user/UserService.class
+it/monko/spring/security/CorsConfig.class
+it/monko/spring/security/CorsConfig$1.class
+it/monko/spring/kafka/UserEventConsumer.class
+it/monko/spring/project/ProjectService.class
+it/monko/spring/security/SecurityConfig.class
