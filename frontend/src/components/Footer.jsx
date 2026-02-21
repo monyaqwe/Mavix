@@ -1,7 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 import mavxLogo from '../assets/mavx-logo.svg';
+import { useContact } from '../context/ContactContext';
 
 const Footer = () => {
+    const { openContactModal } = useContact();
     const location = useLocation();
     const isHome = location.pathname === '/';
 
@@ -56,7 +58,7 @@ const Footer = () => {
                             <li style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>+1 (555) MAVX-777</li>
                             <li style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>Silicon Valley, CA</li>
                             <li>
-                                <Link to="/register" className="footer__cta-link">Get Started →</Link>
+                                <button onClick={openContactModal} className="footer__cta-link">Get Started →</button>
                             </li>
                         </ul>
                     </div>

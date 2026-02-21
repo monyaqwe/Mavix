@@ -47,8 +47,8 @@ const Register = () => {
         setGeneralError("");
         setLoading(true);
 
-        // OPTIMISTIC NAVIGATION: Navigate immediately
-        navigate('/verify-email', { state: { email } });
+        // OPTIMISTIC NAVIGATION: Navigate immediately to onboarding
+        navigate('/onboarding', { state: { email, username } });
 
         // Fire request in background
         fetch("http://localhost:8080/auth/register", {

@@ -16,43 +16,50 @@ import ServiceDetail from './pages/ServiceDetail';
 import AdminDashboard from './pages/AdminDashboard';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import Onboarding from './pages/Onboarding';
 import TestConnection from './components/TestConnection';
+import { ContactProvider } from './context/ContactContext';
+import ContactModal from './components/ContactModal';
 
 function App() {
   return (
-    <Router>
-      <Routes>
+    <ContactProvider>
+      <Router>
+        <Routes>
 
-        {/* Landing page */}
-        <Route path="/" element={<Home />} />
+          {/* Landing page */}
+          <Route path="/" element={<Home />} />
 
-        {/* Auth — full pages with Navbar + animated background */}
-        <Route path="/register" element={<AuthPage><Register /></AuthPage>} />
-        <Route path="/login" element={<AuthPage><Login /></AuthPage>} />
-        <Route path="/forgot-password" element={<AuthPage><ForgotPassword /></AuthPage>} />
-        <Route path="/verify-email" element={<AuthPage><EmailVerification /></AuthPage>} />
-        <Route path="/reset-password" element={<AuthPage><ResetPassword /></AuthPage>} />
-        <Route path="/test" element={<AuthPage><TestConnection /></AuthPage>} />
+          {/* Auth — full pages with Navbar + animated background */}
+          <Route path="/register" element={<AuthPage><Register /></AuthPage>} />
+          <Route path="/login" element={<AuthPage><Login /></AuthPage>} />
+          <Route path="/forgot-password" element={<AuthPage><ForgotPassword /></AuthPage>} />
+          <Route path="/verify-email" element={<AuthPage><EmailVerification /></AuthPage>} />
+          <Route path="/reset-password" element={<AuthPage><ResetPassword /></AuthPage>} />
+          <Route path="/onboarding" element={<AuthPage><Onboarding /></AuthPage>} />
+          <Route path="/test" element={<AuthPage><TestConnection /></AuthPage>} />
 
-        {/* Service detail pages */}
-        <Route path="/services/:slug" element={<ServiceDetail />} />
+          {/* Service detail pages */}
+          <Route path="/services/:slug" element={<ServiceDetail />} />
 
-        {/* Legal pages */}
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/terms" element={<Terms />} />
+          {/* Legal pages */}
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
 
-        {/* Dashboard with nested sub-pages */}
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index element={<DashboardOverview />} />
-          <Route path="projects" element={<DashboardProjects />} />
-          <Route path="analytics" element={<DashboardAnalytics />} />
-          <Route path="settings" element={<DashboardSettings />} />
-          <Route path="help" element={<DashboardHelp />} />
-          <Route path="admin" element={<AdminDashboard />} />
-        </Route>
+          {/* Dashboard with nested sub-pages */}
+          <Route path="/dashboard" element={<DashboardLayout />}>
+            <Route index element={<DashboardOverview />} />
+            <Route path="projects" element={<DashboardProjects />} />
+            <Route path="analytics" element={<DashboardAnalytics />} />
+            <Route path="settings" element={<DashboardSettings />} />
+            <Route path="help" element={<DashboardHelp />} />
+            <Route path="admin" element={<AdminDashboard />} />
+          </Route>
 
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+      <ContactModal />
+    </ContactProvider>
   );
 }
 

@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import mavxLogo from '../assets/mavx-logo.svg';
+import { useContact } from '../context/ContactContext';
 
 const Navbar = () => {
+    const { openContactModal } = useContact();
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const location = useLocation();
