@@ -3,8 +3,10 @@ import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Code, Palette, ShoppingCart, Search, Smartphone, Wrench, Check, Sparkles, MessageSquare, Rocket, Zap } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useContact } from '../context/ContactContext';
 
 const Home = () => {
+    const { openContactModal } = useContact();
     const observerRefs = useRef([]);
     const location = useLocation();
 
@@ -290,7 +292,7 @@ const Home = () => {
                                 <li><Check size={16} /> Unlimited revisions</li>
                                 <li><Check size={16} /> Dedicated support</li>
                             </ul>
-                            <Link to="/register" className="btn-secondary pricing-card__btn">Contact Us</Link>
+                            <button onClick={openContactModal} className="btn-secondary pricing-card__btn">Contact Us</button>
                         </div>
                     </div>
                 </div>
