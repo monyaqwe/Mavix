@@ -1,0 +1,17 @@
+it/monko/spring/security/JwtUtils.class
+it/monko/spring/AuthServiceApplication.class
+it/monko/spring/email/VerificationCodeRepository.class
+it/monko/spring/kafka/AuthEventProducer.class
+it/monko/spring/email/EmailService.class
+it/monko/spring/auth/dto/LoginRequest.class
+it/monko/spring/auth/AuthService.class
+it/monko/spring/auth/AuthController.class
+it/monko/spring/auth/dto/ResetPasswordRequest.class
+it/monko/spring/auth/dto/ForgotPasswordRequest.class
+it/monko/spring/auth/dto/RegisterRequest.class
+it/monko/spring/auth/AuthUserRepository.class
+it/monko/spring/email/VerificationCode.class
+it/monko/spring/auth/dto/VerifyRequest.class
+it/monko/spring/auth/AuthUser.class
+it/monko/spring/email/VerificationCodeService.class
+it/monko/spring/security/SecurityConfig.class

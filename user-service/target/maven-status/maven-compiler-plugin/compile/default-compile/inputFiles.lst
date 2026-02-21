@@ -1,0 +1,12 @@
+/Users/andrejkamanin/Documents/Mavix/backend/user-service/src/main/java/it/monko/spring/UserServiceApplication.java
+/Users/andrejkamanin/Documents/Mavix/backend/user-service/src/main/java/it/monko/spring/kafka/UserEventConsumer.java
+/Users/andrejkamanin/Documents/Mavix/backend/user-service/src/main/java/it/monko/spring/project/Project.java
+/Users/andrejkamanin/Documents/Mavix/backend/user-service/src/main/java/it/monko/spring/project/ProjectController.java
+/Users/andrejkamanin/Documents/Mavix/backend/user-service/src/main/java/it/monko/spring/project/ProjectRepository.java
+/Users/andrejkamanin/Documents/Mavix/backend/user-service/src/main/java/it/monko/spring/project/ProjectService.java
+/Users/andrejkamanin/Documents/Mavix/backend/user-service/src/main/java/it/monko/spring/project/dto/ProjectRequest.java
+/Users/andrejkamanin/Documents/Mavix/backend/user-service/src/main/java/it/monko/spring/security/CorsConfig.java
+/Users/andrejkamanin/Documents/Mavix/backend/user-service/src/main/java/it/monko/spring/security/SecurityConfig.java
+/Users/andrejkamanin/Documents/Mavix/backend/user-service/src/main/java/it/monko/spring/user/User.java
+/Users/andrejkamanin/Documents/Mavix/backend/user-service/src/main/java/it/monko/spring/user/UserRepository.java
+/Users/andrejkamanin/Documents/Mavix/backend/user-service/src/main/java/it/monko/spring/user/UserService.java
