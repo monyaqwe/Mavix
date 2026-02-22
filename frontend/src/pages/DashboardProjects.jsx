@@ -3,8 +3,7 @@ import {
     Plus, FolderOpen, Trash2, X, Clock, CheckCircle2, PauseCircle,
     ChevronRight, Loader2
 } from 'lucide-react';
-
-const API_BASE = 'http://localhost:8080/api/projects';
+import { USER_ENDPOINTS } from '../api/config';
 
 const STATUS_MAP = {
     ACTIVE: { label: 'Active', icon: Clock, className: 'dash-proj__badge--active' },
@@ -23,7 +22,7 @@ const DashboardProjects = () => {
     // Fetch projects
     const fetchProjects = async () => {
         try {
-            const res = await fetch(API_BASE);
+            const res = await fetch(USER_ENDPOINTS.PROJECTS);
             if (res.ok) {
                 const data = await res.json();
                 setProjects(data);
@@ -44,7 +43,7 @@ const DashboardProjects = () => {
         setCreating(true);
         setError('');
         try {
-            const res = await fetch(API_BASE, {
+            const res = await fetch(USER_ENDPOINTS.PROJECTS, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(form),
@@ -67,7 +66,7 @@ const DashboardProjects = () => {
     const handleDelete = async (id) => {
         if (!window.confirm('Are you sure you want to delete this project?')) return;
         try {
-            await fetch(`${API_BASE}/${id}`, { method: 'DELETE' });
+            await fetch(`${USER_ENDPOINTS.PROJECTS}/${id}`, { method: 'DELETE' });
             fetchProjects();
         } catch (err) {
             console.error('Delete failed', err);
@@ -78,7 +77,7 @@ const DashboardProjects = () => {
     const handleUpdateProgress = async (id, current) => {
         const next = Math.min(100, current + 10);
         try {
-            const res = await fetch(`${API_BASE}/${id}/progress`, {
+            const res = await fetch(`${USER_ENDPOINTS.PROJECTS}/${id}/progress`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ progress: next }),

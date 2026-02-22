@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { ArrowRight, Mail, Lock, AlertCircle, CheckCircle } from 'lucide-react';
 
+import { AUTH_ENDPOINTS } from '../api/config';
+
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -15,7 +17,7 @@ const Login = () => {
         const password = e.target.password.value;
 
         try {
-            const response = await fetch("http://localhost:8080/auth/login", {
+            const response = await fetch(AUTH_ENDPOINTS.LOGIN, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password })
