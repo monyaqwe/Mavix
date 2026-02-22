@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { X, ChevronRight, ChevronLeft, Check, Send, Sparkles } from 'lucide-react';
-import './ContactModal.css'; // Reusing styles
+
 
 const Onboarding = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { email, username } = location.state || {};
+    const { email, username } = location.state || { email: '', username: 'Guest' };
 
     const [step, setStep] = useState(1);
     const [isSubmitted, setIsSubmitted] = useState(false);

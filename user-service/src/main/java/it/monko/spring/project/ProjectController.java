@@ -23,4 +23,15 @@ public class ProjectController {
     public ResponseEntity<Project> createProject(@RequestBody ProjectRequest request) {
         return ResponseEntity.ok(projectService.saveProject(request));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProject(@PathVariable Long id) {
+        projectService.deleteProject(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}/progress")
+    public ResponseEntity<Project> updateProgress(@PathVariable Long id, @RequestBody java.util.Map<String, Integer> request) {
+        return ResponseEntity.ok(projectService.updateProgress(id, request.get("progress")));
+    }
 }
