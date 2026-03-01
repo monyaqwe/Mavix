@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Mail, Key, ArrowRight, AlertCircle, CheckCircle } from 'lucide-react';
 
-import { AUTH_ENDPOINTS } from '../api/config';
+import { AUTH_ENDPOINTS } from '../services/config';
 
 const EmailVerification = () => {
   const navigate = useNavigate();

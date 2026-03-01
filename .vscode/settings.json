@@ -1,0 +1,19 @@
+{
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-17",
+            "path": "C:\\Users\\makar\\.jdks\\ms-21.0.10",
+            "default": true
+        },
+        {
+            "name": "JavaSE-18",
+            "path": "C:\\Users\\makar\\.jdks\\ms-21.0.10"
+        },
+        {
+            "name": "JavaSE-19",
+            "path": "C:\\Users\\makar\\.jdks\\ms-21.0.10"
+        }
+    ],
+    "java.jdt.ls.java.home": "C:\\Users\\makar\\.jdks\\ms-21.0.10",
+    "java.configuration.updateBuildConfiguration": "automatic"
+}

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Lock, Key, ArrowRight, AlertCircle, CheckCircle } from 'lucide-react';
 
-import { AUTH_ENDPOINTS } from '../api/config';
+import { AUTH_ENDPOINTS } from '../services/config';
 
 const ResetPassword = () => {
     const navigate = useNavigate();

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Code, Palette, ShoppingCart, Search, Smartphone, Wrench, Check, Sparkles } from 'lucide-react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../components/common/Navbar';
+import Footer from '../components/common/Footer';
 
 const servicesData = {
     'web-development': {

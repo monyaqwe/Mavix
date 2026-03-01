@@ -11,13 +11,31 @@ const DashboardSettings = () => {
         marketing: false,
     });
     const [saved, setSaved] = useState(false);
+    const [username, setUsername] = useState('');
+    const [userEmail, setUserEmail] = useState('');
 
     useEffect(() => {
+        try {
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+                const user = JSON.parse(storedUser);
+                setUsername(user.username || '');
+                setUserEmail(user.email || '');
+            } else {
+                setUsername(localStorage.getItem('username') || '');
+                setUserEmail(localStorage.getItem('userEmail') || '');
+            }
+        } catch (e) {
+            console.error("Error loading user session");
+        }
+
         if (darkMode) {
             document.body.classList.add('dark-theme');
+            document.body.classList.remove('light-theme');
             localStorage.setItem('theme', 'dark');
         } else {
             document.body.classList.remove('dark-theme');
+            document.body.classList.add('light-theme');
             localStorage.setItem('theme', 'light');
         }
     }, [darkMode]);
@@ -46,12 +64,12 @@ const DashboardSettings = () => {
                     <div className="dash-settings__form">
                         <div className="dash-settings__field">
                             <label>Full Name</label>
-                            <input type="text" defaultValue="John Doe" required />
+                            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
                         </div>
                         <div className="dash-settings__field">
                             <label>Email</label>
                             <div className="dash-settings__input-with-badge">
-                                <input type="email" defaultValue="john@example.com" readOnly />
+                                <input type="email" value={userEmail} readOnly />
                                 <span className="dash-settings__verified-badge">
                                     <CheckCircle2 size={12} /> Verified
                                 </span>
@@ -60,10 +78,6 @@ const DashboardSettings = () => {
                         <div className="dash-settings__field">
                             <label>Company</label>
                             <input type="text" defaultValue="" placeholder="Your company name" />
-                        </div>
-                        <div className="dash-settings__field">
-                            <label>Bio</label>
-                            <textarea rows={3} placeholder="Tell us about yourself..." defaultValue=""></textarea>
                         </div>
                     </div>
                 </div>
@@ -141,27 +155,6 @@ const DashboardSettings = () => {
                             <Sun size={20} />
                             <span>Light Mode</span>
                         </button>
-                    </div>
-                </div>
-
-                {/* Security */}
-                <div className="dash__card">
-                    <div className="dash__card-header">
-                        <h3><Lock size={18} /> Security</h3>
-                    </div>
-                    <div className="dash-settings__security">
-                        <div className="dash-settings__field">
-                            <label>Current Password</label>
-                            <input type="password" placeholder="••••••••" />
-                        </div>
-                        <div className="dash-settings__field">
-                            <label>New Password</label>
-                            <input type="password" placeholder="••••••••" />
-                        </div>
-                        <div className="dash-settings__field">
-                            <label>Confirm New Password</label>
-                            <input type="password" placeholder="••••••••" />
-                        </div>
                     </div>
                 </div>
             </div>

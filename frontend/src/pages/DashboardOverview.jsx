@@ -6,16 +6,31 @@ import {
     Plus, Shield, Eye, Loader2
 } from 'lucide-react';
 
-const API_BASE = 'http://localhost:8080/api/projects';
+import { USER_ENDPOINTS } from '../services/config';
 
 const DashboardOverview = () => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        try {
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+                const user = JSON.parse(storedUser);
+                setUsername(user.username || 'User');
+            } else {
+                setUsername(localStorage.getItem('username') || 'User');
+            }
+        } catch (e) {
+            setUsername('User');
+        }
+    }, []);
 
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const res = await fetch(API_BASE);
+                const res = await fetch(USER_ENDPOINTS.PROJECTS);
                 if (res.ok) {
                     const data = await res.json();
                     setProjects(data);
@@ -37,7 +52,7 @@ const DashboardOverview = () => {
             {/* Welcome */}
             <div className="dash__welcome">
                 <div>
-                    <h1 className="dash__welcome-title">Welcome back, <span className="text-gradient">John!</span></h1>
+                    <h1 className="dash__welcome-title">Welcome back, <span className="text-gradient">{username}!</span></h1>
                     <p className="dash__welcome-sub">Here's an overview of your projects and account activity.</p>
                 </div>
                 <Link to="/dashboard/projects" className="dash__new-project-btn">
@@ -190,7 +205,14 @@ const DashboardOverview = () => {
                             <div className="dash__security-icon dash__security-icon--ok"><CheckCircle2 size={18} /></div>
                             <div>
                                 <span className="dash__security-label">Email Verified</span>
-                                <span className="dash__security-value">john@example.com</span>
+                                <span className="dash__security-value">
+                                    {(() => {
+                                        try {
+                                            const u = JSON.parse(localStorage.getItem('user'));
+                                            return u?.email || localStorage.getItem('userEmail') || "user@example.com";
+                                        } catch (e) { return "user@example.com"; }
+                                    })()}
+                                </span>
                             </div>
                         </div>
                         <div className="dash__security-item">

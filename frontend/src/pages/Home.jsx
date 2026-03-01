@@ -1,12 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Code, Palette, ShoppingCart, Search, Smartphone, Wrench, Check, Sparkles, MessageSquare, Rocket, Zap } from 'lucide-react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../components/common/Navbar';
+import Footer from '../components/common/Footer';
+import ContactModal from '../components/common/ContactModal';
 
 const Home = () => {
     const observerRefs = useRef([]);
     const location = useLocation();
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -290,7 +292,7 @@ const Home = () => {
                                 <li><Check size={16} /> Unlimited revisions</li>
                                 <li><Check size={16} /> Dedicated support</li>
                             </ul>
-                            <Link to="/register" className="btn-secondary pricing-card__btn">Contact Us</Link>
+                            <button onClick={() => setIsContactModalOpen(true)} className="btn-secondary pricing-card__btn">Contact Us</button>
                         </div>
                     </div>
                 </div>
@@ -318,6 +320,7 @@ const Home = () => {
             </section>
 
             <Footer />
+            <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
         </div>
     );
 };

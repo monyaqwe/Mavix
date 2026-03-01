@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { ArrowRight, Mail, Lock, AlertCircle, CheckCircle } from 'lucide-react';
 
-import { AUTH_ENDPOINTS } from '../api/config';
+import { AUTH_ENDPOINTS, USER_API_BASE } from '../services/config';
 
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
+
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            navigate('/dashboard/projects', { replace: true });
+        }
+    }, [navigate]);
+
     const [error, setError] = useState("");
     const [successMessage, setSuccessMessage] = useState(location.state?.message || "");
 
@@ -27,8 +34,36 @@ const Login = () => {
             console.log("Server response:", text);
 
             if (response.ok) {
-                setError(""); // Clear error
-                navigate('/dashboard');
+                setError("");
+                try {
+                    // Fetch user details immediately to store username
+                    const userRes = await fetch(`${USER_API_BASE}/api/users/${email}`);
+                    let userData = { email, username: email.split("@")[0] };
+
+                    if (userRes.ok) {
+                        const fetchedData = await userRes.json();
+                        userData = {
+                            username: fetchedData.username,
+                            email: fetchedData.email
+                        };
+                    }
+
+                    localStorage.setItem('user', JSON.stringify(userData));
+                    // Keep these for backward compatibility if needed elsewhere temporarily
+                    localStorage.setItem('username', userData.username);
+                    localStorage.setItem('userEmail', userData.email);
+                } catch (e) {
+                    const fallbackData = { username: email.split("@")[0], email };
+                    localStorage.setItem('user', JSON.stringify(fallbackData));
+                    localStorage.setItem('username', fallbackData.username);
+                    localStorage.setItem('userEmail', fallbackData.email);
+                }
+
+                // Redirect user to onboard if they are brand new?
+                // Redirecting to projects page
+                setTimeout(() => {
+                    navigate('/dashboard/projects');
+                }, 1000);
             } else {
                 setError("Incorrect email or password");
             }

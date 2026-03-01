@@ -1,11 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Mail, Lock, User, AlertCircle } from 'lucide-react';
 
-import { AUTH_ENDPOINTS } from '../api/config';
+import { AUTH_ENDPOINTS } from '../services/config';
 
 const Register = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            navigate('/dashboard/projects', { replace: true });
+        }
+    }, [navigate]);
+
     const [fieldErrors, setFieldErrors] = useState({});
     const [generalError, setGeneralError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -29,7 +36,7 @@ const Register = () => {
         return errors;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         e.stopPropagation();
 
@@ -49,19 +56,42 @@ const Register = () => {
         setGeneralError("");
         setLoading(true);
 
-        // OPTIMISTIC NAVIGATION: Navigate immediately
-        navigate('/verify-email', { state: { email } });
+        try {
+            const response = await fetch(AUTH_ENDPOINTS.REGISTER, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, email, password })
+            });
 
-        // Fire request in background
-        fetch(AUTH_ENDPOINTS.REGISTER, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, email, password })
-        }).catch(err => {
-            console.error("Background registration failed:", err);
-            // Since we already navigated, we can't easily show the error here.
-            // This is the trade-off for "instant" navigation.
-        });
+            if (response.ok) {
+                // Store session data after successful registration
+                const userSession = {
+                    username: username || email.split('@')[0],
+                    email: email
+                };
+                localStorage.setItem('user', JSON.stringify(userSession));
+                localStorage.setItem('username', userSession.username);
+                localStorage.setItem('userEmail', userSession.email);
+
+                setTimeout(() => {
+                    navigate('/cart');
+                }, 1500);
+            } else {
+                try {
+                    const text = await response.text();
+                    // Assuming the backend returns "Email already exists" or similar
+                    const errorMsg = text ? JSON.parse(text).message || text : "Registration failed. Please try again.";
+                    setGeneralError(errorMsg);
+                } catch (e) {
+                    setGeneralError("Registration failed. Please try again.");
+                }
+            }
+        } catch (err) {
+            console.error("Registration request failed:", err);
+            setGeneralError("Network error. Please make sure the server is running.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

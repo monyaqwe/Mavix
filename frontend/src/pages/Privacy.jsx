@@ -1,5 +1,5 @@
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../components/common/Navbar';
+import Footer from '../components/common/Footer';
 import { Shield, Lock, FileText, Globe } from 'lucide-react';
 import { useEffect } from 'react';
 
