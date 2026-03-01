@@ -347,10 +347,11 @@ const DashboardInvoices = () => {
                                                         <label style={{ fontSize: '0.85rem', marginBottom: '0.5rem', display: 'block' }}>Card Number</label>
                                                         <input
                                                             type="text"
-                                                            placeholder="0000 0000 0000 0000"
+                                                            name="random-field-1"
+                                                            placeholder="Enter card digits"
                                                             value={cardDetails.number}
                                                             onChange={(e) => setCardDetails(prev => ({ ...prev, number: e.target.value }))}
-                                                            autoComplete="off"
+                                                            autoComplete="new-password"
                                                             style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'var(--bg-secondary)', color: 'var(--text-primary)', fontFamily: 'monospace' }}
                                                         />
                                                     </div>
@@ -360,10 +361,11 @@ const DashboardInvoices = () => {
                                                             <label style={{ fontSize: '0.85rem', marginBottom: '0.5rem', display: 'block' }}>Expiry Date</label>
                                                             <input
                                                                 type="text"
+                                                                name="random-field-2"
                                                                 placeholder="MM/YY"
                                                                 value={cardDetails.expiry}
                                                                 onChange={(e) => setCardDetails(prev => ({ ...prev, expiry: e.target.value }))}
-                                                                autoComplete="off"
+                                                                autoComplete="new-password"
                                                                 style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}
                                                             />
                                                         </div>
@@ -371,10 +373,11 @@ const DashboardInvoices = () => {
                                                             <label style={{ fontSize: '0.85rem', marginBottom: '0.5rem', display: 'block' }}>CVC</label>
                                                             <input
                                                                 type="text"
+                                                                name="random-field-3"
                                                                 placeholder="123"
                                                                 value={cardDetails.cvc}
                                                                 onChange={(e) => setCardDetails(prev => ({ ...prev, cvc: e.target.value }))}
-                                                                autoComplete="off"
+                                                                autoComplete="new-password"
                                                                 style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}
                                                             />
                                                         </div>
