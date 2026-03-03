@@ -74,7 +74,7 @@ const Register = () => {
                 localStorage.setItem('userEmail', userSession.email);
 
                 setTimeout(() => {
-                    navigate('/cart');
+                    navigate('/dashboard/projects');
                 }, 1500);
             } else {
                 try {

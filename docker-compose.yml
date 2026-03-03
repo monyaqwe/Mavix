@@ -55,7 +55,7 @@ services:
       context: .
       dockerfile: backend/auth-service/Dockerfile
     ports:
-      - "8080:8080"
+      - "9082:9082"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://auth-db:5432/auth_db
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
@@ -70,7 +70,7 @@ services:
       context: .
       dockerfile: backend/user-service/Dockerfile
     ports:
-      - "8081:8081"
+      - "9083:9083"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://user-db:5432/user_db
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
